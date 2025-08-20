@@ -29,16 +29,17 @@ def find_stop_sign(path):
         if area >600:
             x,y,w,h = cv.boundingRect(cn)
             if (w+20>h and w-20<h):
-                img = rs
                 x,y,w,h = int(x*100/30), int(y*100/30), int(w*100/30), int(h*100/30)
-                cv.rectangle(img,(x,y), (x+w, y+h), (0,255,0), 2)
+                cv.rectangle(img,(x,y), (x+w, y+h), (255,0,0), 2)
 
                 cx = x+w//2
                 cy= y+h//2
+                cv.circle(img, (cx,cy), 2, (255,0,0), -1)
                 print(cx,cy)
 
-                cv.circle(img, (cx,cy), 1, (255,0,0), 2)
+
     cv.imshow(path, img)
+    cv.imwrite(f"photo{w}.jpg", img)
 
 
 for p in plist:
